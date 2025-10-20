@@ -29,12 +29,27 @@ export const parseInput = (input) => {
     const [, delimiter, rest] = match;
     if (!delimiter || !rest) throw new Error(ERROR_MESSAGES.INVALID_DELIMITER);
 
+    // 특수문자 제한
+    if (/[^a-zA-Z0-9,;:._-]/.test(delimiter)) {
+      throw new Error(ERROR_MESSAGES.INVALID_CUSTOM_DELIMITER);
+    }
+
     // 여러 구분자(기본 , : + 커스텀 구분자)를 모두 인식하도록 처리
     const mixedDelimiterRegex = new RegExp(`${delimiter}|,|:`);
     numbers = rest.split(mixedDelimiterRegex);
   } else {
     // 기본 구분자 처리
     numbers = trimmedInput.split(DEFAULT_DELIMITERS);
+  }
+
+  // 연속 구분자 및 구분자 뒤 숫자 없음 처리
+  if (numbers.some((num) => num === '')) {
+    const endsWithDelimiter = /[,:;]$/.test(trimmedInput);
+    throw new Error(
+      endsWithDelimiter
+        ? ERROR_MESSAGES.MISSING_NUMBER_AFTER_DELIMITER
+        : ERROR_MESSAGES.MISSING_NUMBER_BETWEEN_DELIMITERS,
+    );
   }
 
   return numbers;

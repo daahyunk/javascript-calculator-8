@@ -7,4 +7,7 @@ export const ERROR_MESSAGES = {
   NEGATIVE_NUMBER: '음수는 허용되지 않습니다.',
   INVALID_TYPE: '올바른 문자열을 입력해야 합니다.',
   NO_NUMBER_FOUND: '숫자를 포함하지 않은 입력입니다.',
+  INVALID_CUSTOM_DELIMITER: '허용되지 않은 구분자입니다.',
+  MISSING_NUMBER_BETWEEN_DELIMITERS: '구분자 사이에 숫자가 없습니다.',
+  MISSING_NUMBER_AFTER_DELIMITER: '구분자 이후에 숫자가 없습니다.',
 };
