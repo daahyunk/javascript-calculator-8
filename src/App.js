@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import parseInput from './utils/parser.js';
+import { ERROR_PREFIX } from './constants/error.js';
 
 class App {
   async run() {
@@ -8,7 +9,7 @@ class App {
       const numbers = parseInput(input);
       Console.print(`입력값: ${numbers}`);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(`${ERROR_PREFIX} ${error.message}`);
     }
   }
 }
