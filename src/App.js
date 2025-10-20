@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import parseInput from './utils/parser.js';
 import { convertToNumbers, sumNumbers } from './utils/calculator.js';
-import { ERROR_PREFIX, ERROR_MESSAGES } from './constants/error.js';
+import { ERROR_MESSAGES } from './constants/error.js';
 
 class App {
   async run() {
@@ -12,12 +12,13 @@ class App {
       const result = sumNumbers(numbers);
 
       try {
-        Console.print(`결과: ${result}`);
+        Console.print(`결과 : ${result}`);
       } catch {
         throw new Error(ERROR_MESSAGES.PRINT_FAILED);
       }
     } catch (error) {
-      Console.print(`${ERROR_PREFIX} ${error.message}`);
+      Console.print(error.message);
+      throw error;
     }
   }
 }
