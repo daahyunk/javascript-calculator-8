@@ -22,13 +22,16 @@ export const parseInput = (input) => {
 
   // 커스텀 구분자 처리
   if (trimmedInput.startsWith(CUSTOM_DELIMITER_PREFIX)) {
+    // // 다음에 구분자와 \n이 반드시 존재해야 함
     const match = trimmedInput.match(/^\/\/(.+?)(?:\\n|\n)(.*)$/);
     if (!match) throw new Error(ERROR_MESSAGES.INVALID_DELIMITER);
 
     const [, delimiter, rest] = match;
-    if (!delimiter) throw new Error(ERROR_MESSAGES.INVALID_DELIMITER);
+    if (!delimiter || !rest) throw new Error(ERROR_MESSAGES.INVALID_DELIMITER);
 
-    numbers = rest.split(delimiter);
+    // 여러 구분자(기본 , : + 커스텀 구분자)를 모두 인식하도록 처리
+    const mixedDelimiterRegex = new RegExp(`${delimiter}|,|:`);
+    numbers = rest.split(mixedDelimiterRegex);
   } else {
     // 기본 구분자 처리
     numbers = trimmedInput.split(DEFAULT_DELIMITERS);
