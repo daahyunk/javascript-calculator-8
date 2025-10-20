@@ -13,4 +13,5 @@ export const ERROR_MESSAGES = {
   NUMBER_TOO_LARGE: '허용 범위를 초과한 숫자입니다.',
   INVALID_NUMBER_FORMAT: '잘못된 숫자 형식이 포함되어 있습니다.',
   INVALID_RESULT: '계산 결과가 유효하지 않습니다.',
+  PRINT_FAILED: '결과 출력 중 문제가 발생했습니다.',
 };
