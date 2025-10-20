@@ -1,14 +1,14 @@
 import { Console } from '@woowacourse/mission-utils';
+import parseInput from './utils/parser.js';
 
 class App {
   async run() {
     try {
       const input = await Console.readLineAsync('덧셈할 문자열을 입력해 주세요.');
-
-      Console.print(`입력값: ${input}`);
-      Console.print('프로그램이 정상적으로 실행되었습니다.');
+      const numbers = parseInput(input);
+      Console.print(`입력값: ${numbers}`);
     } catch (error) {
-      Console.print('[ERROR] 프로그램 실행 중 문제가 발생했습니다.');
+      Console.print(`[ERROR] ${error.message}`);
     }
   }
 }
