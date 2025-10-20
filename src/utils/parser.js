@@ -1,6 +1,9 @@
 export const parseInput = (input) => {
   if (!input) return [0];
-  return input.split(','); // 임시 로직
+
+  // 기본 구분자(, :) 처리
+  const numbers = input.split(/,|:/);
+  return numbers;
 };
 
 export default parseInput;
